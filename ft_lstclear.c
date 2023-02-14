@@ -1,0 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/14 19:28:19 by Ooksuz            #+#    #+#             */
+/*   Updated: 2022/10/20 22:39:41 by Ooksuz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*tmp;
+
+	if (!del || !lst)
+	{
+	}
+	else
+	{
+		while (*lst && del)
+		{
+			tmp = lst[0]->next;
+			ft_lstdelone(*lst, del);
+			free (lst[0]);
+			*lst = tmp;
+		}
+		*lst = NULL;
+	}
+}
